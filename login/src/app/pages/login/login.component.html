@@ -1,13 +1,36 @@
 <section>
   <form class="example-form">
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Favorite food</mat-label>
-      <input matInput placeholder="Ex. Pizza" value="Sushi" />
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>User</mat-label>
+      <input matInput placeholder="User" />
     </mat-form-field>
 
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Leave a comment</mat-label>
-      <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+    <mat-form-field class="custom-form-field" appearance="outline">
+      <mat-label>Senha</mat-label>
+      <input
+        id="login-password"
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        placeholder="Sua senha"
+        formControlName="password"
+        tabindex="0"
+        aria-label="Senha"
+        maxlength="15"
+      />
+      <span
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        id="password-visibility"
+        data-cy
+        [attr.data-cy]="'toggle-password'"
+        attr.aria-label="{{ hide ? 'Mostrar senha' : 'Esconder senha' }}"
+        tabindex="0"
+      >
+        <mat-icon color="primary" [ngClass]="hide ? 'is-hidden' : ''">{{
+          hide ? "visibility_off" : "visibility"
+        }}</mat-icon>
+      </span>
     </mat-form-field>
   </form>
 </section>
