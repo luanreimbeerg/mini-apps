@@ -58,8 +58,10 @@ ng g m caminho --routing --route nome-component --module app-routing.module.ts
 
 # Para gerar component filho
 
-ng g m caminho/nome-component
-ng g c caminho/nome-component
+```ts
+    ng g m caminho/nome-component
+    ng g c caminho/nome-component
+```
 
 # Material deve ser instalado na mão
 
