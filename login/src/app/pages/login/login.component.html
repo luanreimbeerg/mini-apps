@@ -1,8 +1,18 @@
 <section>
-  <form class="example-form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="example-form">
     <mat-form-field class="example-full-width" appearance="outline">
       <mat-label>User</mat-label>
-      <input matInput placeholder="User" />
+      <input
+        matInput
+        placeholder="user"
+        formControlName="user"
+        type="text"
+        aria-label="User"
+        required
+      />
+      <mat-error *ngIf="hasError('user', 'required', form)">
+        Campo <strong>User</strong> é obrigatório!
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="custom-form-field" appearance="outline">
@@ -16,6 +26,7 @@
         tabindex="0"
         aria-label="Senha"
         maxlength="15"
+        required
       />
       <span
         mat-icon-button
@@ -31,6 +42,11 @@
           hide ? "visibility_off" : "visibility"
         }}</mat-icon>
       </span>
+      <mat-error *ngIf="hasError('password', 'required', form)"
+        >Campo <strong>Senha</strong> é obrigatório!</mat-error
+      >
     </mat-form-field>
+
+    <button mat-button #submit type="submit" [disabled]="form.invalid">Acessar</button>
   </form>
 </section>
