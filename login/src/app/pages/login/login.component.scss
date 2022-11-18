@@ -1,0 +1,29 @@
+section{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../../../assets/images/screen-4.png');
+    
+    .example-form{
+        padding: 35px;
+        height: 325px;
+        display: flex;
+        flex-direction: column;
+        background-color: #4A9CEE;
+        border-radius: 5px;
+        justify-content: center;
+
+        button{
+            width: 100%;
+            height: 50px;
+            border-radius: 5px;
+            background-color: #3B70B2;
+        }
+    }
+}
+
+.mat-icon.mat-primary {
+    color: #000000;
+}
