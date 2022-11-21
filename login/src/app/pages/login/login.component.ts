@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
+import { StorageService } from "./../../../_shared/services/storage.service";
 import { FormErrorMixin } from "../../../_shared/mixins/form-error.mixin";
 import { MixinHandler } from "../../../_shared/mixins/mixin-handler";
 
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   public hasError!: (controlName: string, errorName: string, loginForm: FormGroup) => false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private storageService: StorageService) {}
 
   ngOnInit(): void {
     MixinHandler.applyMixins(LoginComponent, [FormErrorMixin]);
@@ -24,10 +25,14 @@ export class LoginComponent implements OnInit {
 
   private buildForm(): void {
     this.form = this.fb.group({
-      user: [{ value: "" }, Validators.required],
-      password: [{ value: "" }, Validators.required],
+      user: [{value: "", disabled: false}, Validators.required],
+      password: [{value: "", disabled: false}, Validators.required],
     });
   }
 
-  public onSubmit() {}
+  public onSubmit() {
+    this.storageService.setItem("user", this.form.get("user")?.value);
+    this.storageService.setItem("password", this.form.get("password")?.value);
+    window.location.pathname = "/frame";
+  }
 }
